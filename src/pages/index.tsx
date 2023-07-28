@@ -5,12 +5,14 @@ import React from 'react'
 // ...
 
 // Internal Dependencies
-// Button
 
-export const Home = () => {
+
+const Home = () => {
   return (
     <div>
-      <p>Home Page</p>
+      <h1>Pokemon</h1>
     </div>
   )
 }
+
+export default Home

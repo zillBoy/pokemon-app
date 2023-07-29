@@ -1,5 +1,5 @@
 // React  & Next Dependencies
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 // Internal Dependencies
@@ -8,12 +8,28 @@ import { Badge } from "../Badge/Badge";
 type HighlightCardProps = {
   name: string;
   image: string;
+  colors: {
+    darkMuted: string;
+    darkVibrant: string;
+    lightMuted: string;
+    lightVibrant: string;
+    muted: string;
+    vibrant: string;
+  };
+  className: string;
 };
 
-export const HighlightCard = ({ name, image }: HighlightCardProps) => {
+export const HighlightCard = ({
+  name,
+  image,
+  colors,
+  className,
+}: HighlightCardProps) => {
   return (
-    // className="backdrop-blur-sm bg-white/30"
-    <div className="relative bg-red-400 w-75 h-50 rounded-xl">
+    <div
+      style={{ backgroundColor: colors.lightVibrant }}
+      className={`relative w-75 h-50 rounded-xl ${className}`}
+    >
       <Image
         className="mx-auto"
         src={image}

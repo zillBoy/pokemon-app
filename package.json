@@ -3,23 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "db:reset": "",
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
+    "build:test": "npm run db:reset && cross-env NODE_ENV=test next build",
     "start": "next start",
-    "lint": "next lint"
+    "start:test": "cross-env NODE_ENV=test next start",
+    "test": "jest --config=jest.config.js",
+    "test:ci": "jest --ci",
+    "cypress:open": "env-cmd -f .env.test.local cypress open",
+    "cypress:start": "start-server-and-test 'npm run start:test' 3000 'npm run cypress:open'",
+    "cypress:build": "npm run build:test && npm run cypress:start",
+    "cypress:run": "start-server-and-test 'npm run start:test' 3000 'env-cmd -f .env.test.local cypress run'"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "jest-environment-jsdom": "^29.6.2",
     "next": "13.4.12",
     "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "start-server-and-test": "^2.0.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.17.2"
   }
 }

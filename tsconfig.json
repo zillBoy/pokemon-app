@@ -16,7 +16,8 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@/tests*": ["./__tests__/*"]
+      "@public/*": ["./public/*"],
+      "@tests/*": ["./__tests__/*"]
     },
     "types": ["cypress", "@testing-library/cypress"]
   },
@@ -24,9 +25,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "jest.setup.js",
-    "cypress/support/commands.js",
-    "cypress/e2e/home.cy.js"
+    "./jest.setup.js",
+    "cypress/support/commands.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -9,6 +9,7 @@ import { getPalette } from "react-palette";
 // Internal Dependencies
 import { HighlightCard } from "@/components/common/Card/HighlightCard";
 import { pokemonData } from "@/utils/constants";
+import { BannerCard } from "@/components/common/Card/BannerCard";
 
 type Pokemon = {
   id: string;
@@ -44,6 +45,10 @@ const Home = ({ groupedPokemonData }: HomeProps) => {
           ))}
         </Marquee>
       ))}
+
+      <div className="relative z-10">
+        <BannerCard />
+      </div>
     </div>
   );
 };

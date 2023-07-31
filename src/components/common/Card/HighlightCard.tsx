@@ -28,14 +28,13 @@ export const HighlightCard = ({
   return (
     <div
       style={{ backgroundColor: colors.lightVibrant }}
-      className={`relative w-75 h-50 rounded-xl ${className}`}
+      className={`relative min-w-75 w-25vw h-28vh rounded-xl ${className}`}
     >
-      <Image
+      <img
         className="mx-auto"
         src={image}
-        width={160}
-        height={160}
         alt={`${name} pokemon`}
+        style={{ width: "50%" }}
       />
       <Badge className="absolute bottom-1.5 left-3" text={name} />
     </div>

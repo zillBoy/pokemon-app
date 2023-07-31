@@ -1,43 +1,49 @@
 // React & Next Dependencies
-import { HighlightCard } from "@/components/common/Card/HighlightCard";
-import React, { useState } from "react";
+import React from "react";
 
 // External Dependencies
+import _ from "lodash";
 import Marquee from "react-fast-marquee";
 import { getPalette } from "react-palette";
 
 // Internal Dependencies
+import { HighlightCard } from "@/components/common/Card/HighlightCard";
+import { pokemonData } from "@/utils/constants";
 
-type HomeProps = {
-  pokemonData: {
-    id: string;
-    image: string;
-    name: string;
-    colors: {
-      darkMuted: string;
-      darkVibrant: string;
-      lightMuted: string;
-      lightVibrant: string;
-      muted: string;
-      vibrant: string;
-    };
-  }[];
+type Pokemon = {
+  id: string;
+  image: string;
+  name: string;
+  colors: {
+    darkMuted: string;
+    darkVibrant: string;
+    lightMuted: string;
+    lightVibrant: string;
+    muted: string;
+    vibrant: string;
+  };
 };
 
-const Home = ({ pokemonData }: HomeProps) => {
+type HomeProps = {
+  groupedPokemonData: Array<Array<Pokemon>>;
+};
+
+const Home = ({ groupedPokemonData }: HomeProps) => {
   return (
-    <div>
-      <Marquee direction="right">
-        {pokemonData.map((pokemon) => (
-          <HighlightCard
-            className="m-2"
-            key={pokemon.id}
-            name={pokemon.name}
-            image={pokemon.image}
-            colors={pokemon.colors}
-          />
-        ))}
-      </Marquee>
+    <div className="h-screen overflow-hidden">
+      {groupedPokemonData.map((pokemonData, index) => (
+        <Marquee key={index} direction={index % 2 === 0 ? "right" : "left"}>
+          {pokemonData.map((pokemon) => (
+            <HighlightCard
+              className="m-2"
+              key={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.image}
+              colors={pokemon.colors}
+            />
+          ))}
+        </Marquee>
+      ))}
     </div>
   );
 };
@@ -45,44 +51,6 @@ const Home = ({ pokemonData }: HomeProps) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const pokemonData = [
-    {
-      id: "charizard-id",
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      name: "Charizard",
-      colors: {},
-    },
-    {
-      id: "pikachu-id",
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-      name: "Pikachu",
-      colors: {},
-    },
-    {
-      id: "arceus-id",
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/493.png",
-      name: "Arceus",
-      colors: {},
-    },
-    {
-      id: "leafeon-id",
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
-      name: "Leafeon",
-      colors: {},
-    },
-    {
-      id: "grovyle-id",
-      image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/253.png",
-      name: "Grovyle",
-      colors: {},
-    },
-  ];
-
   await Promise.all(
     pokemonData.map(async (pokemon) => {
       pokemon.colors = await getPalette(pokemon.image);
@@ -90,9 +58,11 @@ export const getStaticProps = async () => {
     })
   );
 
+  const parsedPokemonData = _.chunk(pokemonData, 5);
+
   return {
     props: {
-      pokemonData,
+      groupedPokemonData: parsedPokemonData,
     },
   };
 };

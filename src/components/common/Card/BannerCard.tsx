@@ -1,6 +1,9 @@
 // React Dependencies
 import React from "react";
 
+// Internal Dependencies
+import { Button } from "../Button/Button";
+
 export const BannerCard = () => {
   return (
     <div className="fixed inset-x-0 bottom-0 w-full p-5 text-center bg-white border border-gray-100 shadow-lg rounded-t-3xl sm:p-8 lg:left-10 lg:bottom-10 lg:max-w-2xl lg:rounded-b-3xl">
@@ -15,7 +18,7 @@ export const BannerCard = () => {
         </h1>
       </div>
       <div className="my-4 mb-6 text-left sm:my-8">
-        <h2 className="px-1 mb-2 text-xl font-bold text-center sm:text-left sm:text-2xl">
+        <h2 className="px-1 mb-2 text-xl font-bold text-center text-darker-gray sm:text-left sm:text-2xl">
           Generate your favourite pokémon card
         </h2>
         <p className="px-1 text-sm text-gray-500 sm:whitespace-pre sm:px-0 sm:text-base">
@@ -28,22 +31,10 @@ export const BannerCard = () => {
       </div>
       <div className="grid gap-y-2 sm:flex">
         <div className="">
-          <button
-            type="button"
-            className="flex items-center justify-center block w-full h-full px-10 py-4 text-base font-bold leading-none text-center text-white bg-gray-800 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 md:text-lg rounded-xl sm:w-auto"
-            style={{ transform: "none" }}
-          >
-            <span>Create card</span>
-          </button>
+          <Button variant="contained" text="Create card" />
         </div>
         <div className="">
-          <button
-            type="button"
-            className="flex items-center justify-center block w-full h-full px-6 py-3 text-base font-bold leading-none text-center text-gray-800 border-2 border-gray-800 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70 rounded-xl md:py-4 md:px-6 sm:ml-4 sm:w-auto"
-            style={{ transform: "none" }}
-          >
-            <span>Log in</span>
-          </button>
+          <Button variant="outline" text="Log in" />
         </div>
       </div>
       <div className="flex flex-col mt-6 text-xs font-semibold text-gray-300 sm:mt-8 sm:flex-row sm:text-sm">

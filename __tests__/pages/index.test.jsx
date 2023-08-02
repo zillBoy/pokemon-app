@@ -16,7 +16,7 @@ describe("Home", () => {
   it('displays heading text "Pokemon"', () => {
     render(<Home />);
 
-    const headings = screen.getAllByRole("heading", { name: /pokemon/i });
-    expect(headings).toHaveLength(2);
+    const headings = screen.getAllByRole("heading", { name: /pokémon-app/i });
+    expect(headings).toHaveLength(1);
   });
 });

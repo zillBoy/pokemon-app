@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 
 // Internal Dependencies
 import { Button } from "../../../../src/components/common/Button/Button";
-import { setup } from "../../../utils/utils";
+import { setup } from "../../../../src/utils/utils";
 
 describe("Button", () => {
   it("display correct text in button", () => {

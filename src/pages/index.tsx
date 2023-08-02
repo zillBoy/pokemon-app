@@ -29,7 +29,7 @@ type HomeProps = {
   groupedPokemonData: Array<Array<Pokemon>>;
 };
 
-const Home = ({ groupedPokemonData }: HomeProps) => {
+const Home = ({ groupedPokemonData = [] }: HomeProps) => {
   return (
     <div className="h-screen overflow-hidden">
       {groupedPokemonData.map((pokemonData, index) => (

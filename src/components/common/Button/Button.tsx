@@ -16,7 +16,11 @@ export type ButtonProps = {
 
 export const Button = ({ text, variant, ...props }: ButtonProps) => {
   return (
-    <button type="button" className={variants[variant]} {...props}>
+    <button
+      type="button"
+      className={`${variants[variant]} hover:scale-95 transition-all ease-in active:scale-85 after:scale-100`}
+      {...props}
+    >
       <span>{text}</span>
     </button>
   );

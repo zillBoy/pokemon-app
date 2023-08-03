@@ -33,9 +33,6 @@ export const BannerCard = () => {
         <div className="">
           <Button variant="contained" text="Create card" />
         </div>
-        <div className="">
-          <Button variant="outline" text="Log in" />
-        </div>
       </div>
       <div className="flex flex-col mt-6 text-xs font-semibold text-gray-300 sm:mt-8 sm:flex-row sm:text-sm">
         <div>
@@ -54,7 +51,7 @@ export const BannerCard = () => {
         </div>
         <span className="hidden sm:inline">|</span>
         <button className="mt-2 text-sm text-gray-700 sm:mt-0 sm:ml-5">
-          日本語
+          Deutsch
         </button>
       </div>
     </div>

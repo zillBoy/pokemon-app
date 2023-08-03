@@ -38,6 +38,9 @@ module.exports = {
         "25vh": "25vh",
         "28vh": "28.2vh",
       },
+      scale: {
+        85: '0.85'
+      }
     },
   },
   plugins: [],

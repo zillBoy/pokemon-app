@@ -14,6 +14,7 @@ module.exports = {
         "dark-gray": "#4E5460",
         "darker-gray": "#3C424D",
         "light-gray": "#B2B6BF",
+        "lighter-gray": "#F0F3F7",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -39,8 +40,8 @@ module.exports = {
         "28vh": "28.2vh",
       },
       scale: {
-        85: '0.85'
-      }
+        85: "0.85",
+      },
     },
   },
   plugins: [],

@@ -4,7 +4,11 @@ import React from "react";
 // Internal Dependencies
 import { Button } from "../Button/Button";
 
-export const BannerCard = () => {
+export type BannerCardProps = {
+  onCreateCardClick: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+export const BannerCard = ({ onCreateCardClick }: BannerCardProps) => {
   return (
     <div className="fixed inset-x-0 bottom-0 w-full p-5 text-center bg-white border border-gray-100 shadow-lg rounded-t-3xl sm:p-8 lg:left-10 lg:bottom-10 lg:max-w-2xl lg:rounded-b-3xl">
       <div className="flex items-end justify-center sm:justify-start">
@@ -31,7 +35,11 @@ export const BannerCard = () => {
       </div>
       <div className="grid gap-y-2 sm:flex">
         <div className="">
-          <Button variant="contained" text="Create card" />
+          <Button
+            variant="contained"
+            text="Create card"
+            onClick={onCreateCardClick}
+          />
         </div>
       </div>
       <div className="flex flex-col mt-6 text-xs font-semibold text-gray-300 sm:mt-8 sm:flex-row sm:text-sm">

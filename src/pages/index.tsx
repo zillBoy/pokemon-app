@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { HighlightCard } from "@/components/common/Card/HighlightCard";
 import { pokemonData } from "@/utils/constants";
 import { BannerCard } from "@/components/common/Card/BannerCard";
+import { Form } from "@/components/Form/Form";
 
 type Pokemon = {
   id: string;
@@ -52,7 +53,7 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
         transition={{ duration: 0.25 }}
         className="fixed w-full h-full bg-white"
       >
-        <button onClick={hideModalHandler}>Close</button>
+        <Form onHideModal={hideModalHandler} />
       </motion.div>
 
       {groupedPokemonData.map((pokemonData, index) => (

@@ -47,7 +47,9 @@ export const Form = ({ onHideModal }: FormProps) => {
         </div>
 
         <div className="w-11/12 sm:w-0.8/2">
-          <Input value={text} onChange={changeInputHandler} />
+          <div>
+            <Input value={text} onChange={changeInputHandler} />
+          </div>
           <ButtonIcon
             className="justify-center w-full mt-6 sm:w-full bg-primary-gray"
             icon="/svg/forward-arrow.svg"

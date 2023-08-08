@@ -3,18 +3,12 @@ import React from "react";
 
 // Internal Dependencies
 import { Badge } from "../Badge/Badge";
+import type { PaletteColors } from "react-palette";
 
 type HighlightCardProps = {
   name: string;
   image: string;
-  colors: {
-    darkMuted: string;
-    darkVibrant: string;
-    lightMuted: string;
-    lightVibrant: string;
-    muted: string;
-    vibrant: string;
-  };
+  colors: PaletteColors;
   className: string;
 };
 

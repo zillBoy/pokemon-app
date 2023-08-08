@@ -1,4 +1,13 @@
-export const pokemonData = [
+import type { PaletteColors } from "react-palette";
+
+export type PokemonType = {
+  id: string;
+  image: string;
+  name: string;
+  colors: PaletteColors;
+};
+
+export const pokemonData: Array<PokemonType> = [
   {
     id: "charizard-id",
     image:
@@ -73,7 +82,7 @@ export const pokemonData = [
     id: "lapras-id",
     image:
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png",
-    name: "lapras",
+    name: "Lapras",
     colors: {},
   },
   {

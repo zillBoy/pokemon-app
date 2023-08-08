@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         gray: "#777D86",
+        "placeholder-gray": "#CCCFD5",
         "dark-gray": "#4E5460",
         "darker-gray": "#3C424D",
         "primary-gray": "#3C424D",
@@ -60,6 +61,9 @@ module.exports = {
       },
       fontSize: {
         "2.5xl": "28px",
+      },
+      spacing: {
+        6.5: "25px",
       },
     },
   },

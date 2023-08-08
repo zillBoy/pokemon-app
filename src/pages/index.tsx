@@ -9,26 +9,12 @@ import { motion } from "framer-motion";
 
 // Internal Dependencies
 import { HighlightCard } from "@/components/common/Card/HighlightCard";
-import { pokemonData } from "@/utils/constants";
+import { pokemonData, PokemonType } from "@/utils/constants";
 import { BannerCard } from "@/components/common/Card/BannerCard";
 import { Form } from "@/components/Form/Form";
 
-type Pokemon = {
-  id: string;
-  image: string;
-  name: string;
-  colors: {
-    darkMuted: string;
-    darkVibrant: string;
-    lightMuted: string;
-    lightVibrant: string;
-    muted: string;
-    vibrant: string;
-  };
-};
-
-type HomeProps = {
-  groupedPokemonData: Array<Array<Pokemon>>;
+export type HomeProps = {
+  groupedPokemonData: Array<Array<PokemonType>>;
 };
 
 const Home = ({ groupedPokemonData = [] }: HomeProps) => {

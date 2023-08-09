@@ -25,7 +25,7 @@ export const HighlightCard = ({
     >
       <img
         className="mx-auto user-image-no-select"
-        src={image}
+        src={image.replace("/public", "")} // important have to replace /public with empty string, or else the image does not load
         alt={`${name} pokemon`}
         style={{ width: "50%" }}
         draggable="false"

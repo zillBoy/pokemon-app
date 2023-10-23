@@ -26,7 +26,7 @@ export const BannerCard = ({ onCreateCardClick }: BannerCardProps) => {
           Generate your favourite pokémon card
         </h2>
         <p className="px-1 text-sm text-gray-500 sm:whitespace-pre sm:px-0 sm:text-base">
-          Pokémon-App is a 3D pokémon card generator.
+          Pokémon-App is a pokémon card generator.
         </p>
         <p className="px-1 text-sm text-gray-500 sm:whitespace-pre sm:px-0 sm:text-base">
           Generate stunning card designs from keywords for the Pokémon you
@@ -34,13 +34,11 @@ export const BannerCard = ({ onCreateCardClick }: BannerCardProps) => {
         </p>
       </div>
       <div className="grid gap-y-2 sm:flex">
-        <div className="">
-          <Button
-            variant="contained"
-            text="Create card"
-            onClick={onCreateCardClick}
-          />
-        </div>
+        <Button
+          variant="contained"
+          text="Create card"
+          onClick={onCreateCardClick}
+        />
       </div>
       <div className="flex flex-col mt-6 text-xs font-semibold text-gray-300 sm:mt-8 sm:flex-row sm:text-sm">
         <div>
@@ -57,10 +55,6 @@ export const BannerCard = ({ onCreateCardClick }: BannerCardProps) => {
             Privacy policy
           </a>
         </div>
-        <span className="hidden sm:inline">|</span>
-        <button className="mt-2 text-sm text-gray-700 sm:mt-0 sm:ml-5">
-          Deutsch
-        </button>
       </div>
     </div>
   );

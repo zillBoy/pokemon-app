@@ -19,6 +19,7 @@ module.exports = {
         "light-gray": "#B2B6BF",
         "lighter-gray": "#F0F3F7",
         "lightest-gray": "#E1E5ED",
+        yellow: "#E2CA44",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -56,10 +57,15 @@ module.exports = {
       padding: {
         4.5: "18px",
       },
+      borderWidth: {
+        10: "10px",
+        12: "12px",
+      },
       borderRadius: {
         "2.5xl": "20px",
       },
       fontSize: {
+        xxs: "0.45rem",
         "2.5xl": "28px",
       },
       spacing: {

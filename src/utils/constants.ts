@@ -130,6 +130,19 @@ export const pokemonData: Array<PokemonType> = [
   },
 ];
 
+export const POKEMON_TYPES = [
+  "colorless",
+  "darkness",
+  "dragon",
+  "fairy",
+  "fighting",
+  "grass",
+  "lightning",
+  "metal",
+  "psychic",
+  "water",
+];
+
 // Only for testing, remove it after done
 
 export const mankeyPokemon =

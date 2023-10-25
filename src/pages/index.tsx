@@ -21,6 +21,9 @@ export type HomeProps = {
 const Home = ({ groupedPokemonData = [] }: HomeProps) => {
   const { query } = useRouter();
   const [isModalShowing, setIsModalShowing] = useState(false);
+  const [placeholderPokemonName, setPlaceholderPokemonName] = useState<string>(
+    pokemonData[0].name
+  );
 
   const showModalHandler = () => {
     setIsModalShowing(true);
@@ -36,6 +39,15 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
     }
   }, [query]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const placeholderName = _.sample(_.cloneDeep(pokemonData))!!;
+      setPlaceholderPokemonName(placeholderName.name);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [placeholderPokemonName]);
+
   return (
     <div className="h-screen overflow-hidden">
       <motion.div
@@ -47,7 +59,10 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
         transition={{ duration: 0.25 }}
         className="fixed w-full h-full bg-white"
       >
-        <Form onHideModal={hideModalHandler} />
+        <Form
+          placeholderPokemonName={placeholderPokemonName}
+          onHideModal={hideModalHandler}
+        />
       </motion.div>
 
       {groupedPokemonData.map((pokemonData, index) => (

@@ -13,18 +13,16 @@ import { Input } from "../common/Input/Input";
 import { GET_POKEMON_API_URL, pokemonData } from "@/utils/constants";
 
 export type FormProps = {
+  placeholderPokemonName: string;
   onHideModal: () => void;
 };
 
 const formContainerHeight = "calc(100vh - 15vh - 32px - 50px)"; // full-height - margin - svg-icon
 
-export const Form = ({ onHideModal }: FormProps) => {
+export const Form = ({ placeholderPokemonName, onHideModal }: FormProps) => {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
-
   const [text, setText] = useState("");
-  const [currentPlaceholderPokemonName, setCurrentPlaceholderPokemonName] =
-    useState<string>(pokemonData[0].name);
 
   const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -62,15 +60,6 @@ export const Form = ({ onHideModal }: FormProps) => {
       `/pokemon/${_.lowerCase(text)}`
     );
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const placeholderName = _.sample(_.cloneDeep(pokemonData))!!;
-      setCurrentPlaceholderPokemonName(placeholderName.name);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [currentPlaceholderPokemonName]);
 
   return (
     <>
@@ -111,7 +100,7 @@ export const Form = ({ onHideModal }: FormProps) => {
                         !_.isEmpty(text) ? "hidden" : ""
                       } absolute left-6.5 text-2.5xl text-placeholder-gray font-bold z-20 select-none cursor-text`}
                     >
-                      {currentPlaceholderPokemonName}
+                      {placeholderPokemonName}
                     </p>
                   </motion.div>
                 </div>

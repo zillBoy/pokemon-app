@@ -9,3 +9,5 @@ export const checkAndGetPokemonType = (type: string) => {
 
   return pokemonType;
 };
+
+export const IsWindow = typeof window !== "undefined";

@@ -1,5 +1,6 @@
 // React & Next Dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 // External Dependencies
 import _ from "lodash";
@@ -18,6 +19,7 @@ export type HomeProps = {
 };
 
 const Home = ({ groupedPokemonData = [] }: HomeProps) => {
+  const { query } = useRouter();
   const [isModalShowing, setIsModalShowing] = useState(false);
 
   const showModalHandler = () => {
@@ -27,6 +29,12 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
   const hideModalHandler = () => {
     setIsModalShowing(false);
   };
+
+  useEffect(() => {
+    if (query && query.redirect === "form") {
+      showModalHandler();
+    }
+  }, [query]);
 
   return (
     <div className="h-screen overflow-hidden">

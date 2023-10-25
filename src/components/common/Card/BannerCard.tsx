@@ -42,16 +42,10 @@ export const BannerCard = ({ onCreateCardClick }: BannerCardProps) => {
       </div>
       <div className="flex flex-col mt-6 text-xs font-semibold text-gray-300 sm:mt-8 sm:flex-row sm:text-sm">
         <div>
-          <a
-            className="inline-block mx-1 sm:mx-3 sm:mr-5 sm:ml-0"
-            href="/terms"
-          >
+          <a className="inline-block mx-1 sm:mx-3 sm:mr-5 sm:ml-0">
             Terms of use
           </a>
-          <a
-            className="inline-block mx-1 sm:mx-3 sm:mr-5 sm:ml-0"
-            href="/privacy"
-          >
+          <a className="inline-block mx-1 sm:mx-3 sm:mr-5 sm:ml-0">
             Privacy policy
           </a>
         </div>

@@ -1,9 +1,10 @@
-// // React & Next Dependencies
+// React & Next Dependencies
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { AppContext } from "next/app";
+import { GetServerSidePropsContext } from "next";
 
-// // External Dependencies
+// External Dependencies
 import _ from "lodash";
 import { ColorRing } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
@@ -58,7 +59,10 @@ const Pokemon = ({ pokemonData }: any) => {
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="w-10/12 mx-auto">
-        <div className="flex items-end justify-center sm:justify-start">
+        <Link
+          href="/"
+          className="flex items-end justify-center cursor-pointer sm:justify-start"
+        >
           <img
             src="/images/pokemon-app.png"
             className="mt-2 h-14"
@@ -67,7 +71,7 @@ const Pokemon = ({ pokemonData }: any) => {
           <h1 className="px-2 mb-2 text-2xl font-bold text-center sm:text-left">
             Pokémon-App
           </h1>
-        </div>
+        </Link>
       </div>
 
       <div className="mx-auto">
@@ -92,8 +96,10 @@ const Pokemon = ({ pokemonData }: any) => {
 
 export default Pokemon;
 
-export const getServerSideProps = async (appContext: AppContext) => {
-  const pokemonData = appContext.query;
+export const getServerSideProps = async (
+  content: GetServerSidePropsContext
+) => {
+  const pokemonData = content.query;
 
   return {
     props: {

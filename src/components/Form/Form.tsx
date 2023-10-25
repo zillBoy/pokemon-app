@@ -1,5 +1,5 @@
 // React & Next Dependencies
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 
 // External Dependencies
@@ -20,6 +20,7 @@ const formContainerHeight = "calc(100vh - 15vh - 32px - 50px)"; // full-height -
 
 export const Form = ({ onHideModal }: FormProps) => {
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [text, setText] = useState("");
   const [currentPlaceholderPokemonName, setCurrentPlaceholderPokemonName] =
@@ -98,16 +99,17 @@ export const Form = ({ onHideModal }: FormProps) => {
 
           <div className="w-11/12 sm:w-0.8/2">
             <div>
-              <Input value={text} onChange={changeInputHandler}>
+              <Input ref={inputRef} value={text} onChange={changeInputHandler}>
                 <div className="relative z-20">
                   <motion.div
                     animate={{ y: [0, 0, -55, -55, -55, -55, -105, -105] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
                     <p
+                      onClick={() => inputRef.current?.focus()}
                       className={`${
                         !_.isEmpty(text) ? "hidden" : ""
-                      } absolute left-6.5 text-2.5xl text-placeholder-gray font-bold z-20`}
+                      } absolute left-6.5 text-2.5xl text-placeholder-gray font-bold z-20 select-none cursor-text`}
                     >
                       {currentPlaceholderPokemonName}
                     </p>

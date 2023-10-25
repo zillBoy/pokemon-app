@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 // Internal Dependencies
 import { ButtonIcon } from "../common/Button/ButtonIcon";
 import { Input } from "../common/Input/Input";
-import { GET_POKEMON_API_URL, pokemonData } from "@/utils/constants";
+import { GET_POKEMON_API_URL } from "@/utils/constants";
 
 export type FormProps = {
   placeholderPokemonName: string;
@@ -38,19 +38,16 @@ export const Form = ({ placeholderPokemonName, onHideModal }: FormProps) => {
       return data;
     } catch (err) {
       console.log("error fetchPokemon: ", err);
+      throw err;
     }
   };
 
   const generatePokemonHandler = async () => {
-    // const pokemon = await toast.promise(fetchPokemon, {
-    //   pending: "Generating",
-    //   success: "Success, redirecting...",
-    //   error: "Oops something went wrong!",
-    // });
-    const pokemon = {
-      name: "Mankey POKEMON hehe",
-      img: "pokemon-image",
-    };
+    const pokemon = await toast.promise(fetchPokemon, {
+      pending: "Generating",
+      success: "Success, redirecting...",
+      error: "Pokemon Not Found!",
+    });
 
     router.push(
       {

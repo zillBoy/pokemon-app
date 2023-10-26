@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textShadow: {
+        sm: "0 1px 2px var(--tw-shadow-color)",
+        DEFAULT: "0 2px 4px var(--tw-shadow-color)",
+        lg: "0 8px 16px var(--tw-shadow-color)",
+      },
       fontFamily: {
         primary: "rubik",
       },
@@ -19,6 +26,7 @@ module.exports = {
         "light-gray": "#B2B6BF",
         "lighter-gray": "#F0F3F7",
         "lightest-gray": "#E1E5ED",
+        yellow: "#E2CA44",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -56,10 +64,16 @@ module.exports = {
       padding: {
         4.5: "18px",
       },
+      borderWidth: {
+        10: "10px",
+        12: "12px",
+      },
       borderRadius: {
         "2.5xl": "20px",
       },
       fontSize: {
+        xxs: "0.5rem",
+        xxss: "0.45rem",
         "2.5xl": "28px",
       },
       spacing: {
@@ -67,5 +81,16 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "text-shadow": (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme("textShadow") }
+      );
+    }),
+  ],
 };

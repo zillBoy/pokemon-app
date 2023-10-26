@@ -1,5 +1,7 @@
 import type { PaletteColors } from "react-palette";
 
+export const GET_POKEMON_API_URL = "https://pokeapi.co/api/v2/pokemon/";
+
 export type PokemonType = {
   id: string;
   image: string;
@@ -128,4 +130,17 @@ export const pokemonData: Array<PokemonType> = [
     name: "Hitmontop",
     colors: {},
   },
+];
+
+export const POKEMON_TYPES = [
+  "colorless",
+  "darkness",
+  "dragon",
+  "fairy",
+  "fighting",
+  "grass",
+  "lightning",
+  "metal",
+  "psychic",
+  "water",
 ];

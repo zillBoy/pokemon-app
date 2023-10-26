@@ -1,5 +1,6 @@
 // React & Next Dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 // External Dependencies
 import _ from "lodash";
@@ -18,7 +19,11 @@ export type HomeProps = {
 };
 
 const Home = ({ groupedPokemonData = [] }: HomeProps) => {
+  const { query } = useRouter();
   const [isModalShowing, setIsModalShowing] = useState(false);
+  const [placeholderPokemonName, setPlaceholderPokemonName] = useState<string>(
+    pokemonData[0].name
+  );
 
   const showModalHandler = () => {
     setIsModalShowing(true);
@@ -27,6 +32,21 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
   const hideModalHandler = () => {
     setIsModalShowing(false);
   };
+
+  useEffect(() => {
+    if (query && query.redirect === "form") {
+      showModalHandler();
+    }
+  }, [query]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const placeholderName = _.sample(_.cloneDeep(pokemonData))!!;
+      setPlaceholderPokemonName(placeholderName.name);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [placeholderPokemonName]);
 
   return (
     <div className="h-screen overflow-hidden">
@@ -39,7 +59,10 @@ const Home = ({ groupedPokemonData = [] }: HomeProps) => {
         transition={{ duration: 0.25 }}
         className="fixed w-full h-full bg-white"
       >
-        <Form onHideModal={hideModalHandler} />
+        <Form
+          placeholderPokemonName={placeholderPokemonName}
+          onHideModal={hideModalHandler}
+        />
       </motion.div>
 
       {groupedPokemonData.map((pokemonData, index) => (

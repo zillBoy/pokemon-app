@@ -4,12 +4,14 @@ import Image from "next/image";
 
 export type ButtonIconProps = {
   icon: string;
+  iconDirection?: "left" | "right";
   alt: string;
   className?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const ButtonIcon = ({
   icon,
+  iconDirection = "right",
   alt,
   className,
   disabled,
@@ -24,8 +26,17 @@ export const ButtonIcon = ({
       disabled={disabled}
       {...props}
     >
-      {children}
-      <Image src={icon} width={20} height={20} alt={alt} />
+      {iconDirection === "left" ? (
+        <>
+          <Image src={icon} width={20} height={20} alt={alt} />
+          {children}
+        </>
+      ) : (
+        <>
+          {children}
+          <Image src={icon} width={20} height={20} alt={alt} />
+        </>
+      )}
     </button>
   );
 };

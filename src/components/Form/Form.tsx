@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 
 // Internal Dependencies
+import { usePokemonContext } from "@/context/pokemonContext";
 import { ButtonIcon } from "../common/Button/ButtonIcon";
 import { Input } from "../common/Input/Input";
 import { GET_POKEMON_API_URL } from "@/utils/constants";
@@ -21,6 +22,7 @@ const formContainerHeight = "calc(100vh - 15vh - 32px - 50px)"; // full-height -
 
 export const Form = ({ placeholderPokemonName, onHideModal }: FormProps) => {
   const router = useRouter();
+  const { setPokemon } = usePokemonContext();
   const inputRef = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
 
@@ -49,13 +51,8 @@ export const Form = ({ placeholderPokemonName, onHideModal }: FormProps) => {
       error: "Pokemon Not Found!",
     });
 
-    router.push(
-      {
-        pathname: `/pokemon/${_.lowerCase(text)}`,
-        query: pokemon || null,
-      },
-      `/pokemon/${_.lowerCase(text)}`
-    );
+    setPokemon(pokemon || null);
+    router.push(`/pokemon/${_.lowerCase(text)}`);
   };
 
   return (

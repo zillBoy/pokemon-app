@@ -8,17 +8,20 @@ import { GetServerSidePropsContext } from "next";
 import _ from "lodash";
 import { ColorRing } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 // Internal Dependencies
 import { ButtonIcon } from "@/components/common/Button/ButtonIcon";
 import { PokemonCard } from "@/components/common/Card/PokemonCard";
+import { usePokemonContext } from "@/context/pokemonContext";
 
-const Pokemon = ({ pokemonData }: any) => {
+const Pokemon = () => {
   const router = useRouter();
+  const { pokemon } = usePokemonContext();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (_.isEmpty(pokemonData)) {
+    if (_.isEmpty(pokemon)) {
       toast.warn("Please generate the pokemon, redirecting...", {
         position: "top-center",
         autoClose: 5000,
@@ -74,9 +77,24 @@ const Pokemon = ({ pokemonData }: any) => {
         </Link>
       </div>
 
-      <div className="mx-auto">
-        <PokemonCard />
-      </div>
+      <motion.div
+        className="mx-auto"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          delay: 0.5,
+          duration: 0.3,
+          ease: [0, 0.71, 0.2, 1.01],
+          scale: {
+            type: "spring",
+            damping: 5,
+            stiffness: 100,
+            restDelta: 0.001,
+          },
+        }}
+      >
+        <PokemonCard pokemon={pokemon} />
+      </motion.div>
 
       <div className="flex items-center justify-center">
         <ButtonIcon
@@ -84,6 +102,7 @@ const Pokemon = ({ pokemonData }: any) => {
           icon="/svg/refresh-dark.svg"
           alt="cross"
           iconDirection="left"
+          onClick={() => router.push({ pathname: "/", query: "redirect=form" })}
         >
           <span className="py-1 ml-2 text-xl text-darker-gray">
             Re-Generate
@@ -99,11 +118,9 @@ export default Pokemon;
 export const getServerSideProps = async (
   content: GetServerSidePropsContext
 ) => {
-  const pokemonData = content.query;
-
   return {
     props: {
-      pokemonData: Object.keys(pokemonData).length === 1 ? null : pokemonData,
+      query: content.query,
     },
   };
 };

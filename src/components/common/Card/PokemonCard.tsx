@@ -6,12 +6,15 @@ import _ from "lodash";
 import { getPalette, PaletteColors } from "react-palette";
 
 // Internal Dependencie
-import { mankeyPokemon as pokemon } from "@/utils/constants";
 import { checkAndGetPokemonType } from "@/utils/checks";
 import { getTwoRandomPokemonMoves, PokemonMoveType } from "@/utils/utils";
 
-export const PokemonCard = () => {
-  const [loaded, setLoaded] = useState(false);
+type PokemonCardType = {
+  pokemon: any;
+};
+
+export const PokemonCard = ({ pokemon }: PokemonCardType) => {
+  const [loading, setLoading] = useState(true);
   const [colorPalette, setColorPalette] = useState<PaletteColors>({});
   const [image, setImage] = useState<string>("");
   const [moves, setMoves] = useState<PokemonMoveType[]>([]);
@@ -19,7 +22,9 @@ export const PokemonCard = () => {
   const initialLoading = async () => {
     const pokemonType = checkAndGetPokemonType(pokemon.types[0].type.name);
     const img = `/images/pokemon-type/${pokemonType}.png`;
-    const palette = await getPalette(img);
+    const palette = await getPalette(
+      pokemon.sprites.other["official-artwork"].front_default
+    );
     const pokemonRandomMoves = getTwoRandomPokemonMoves(
       pokemon.moves,
       pokemon.stats[0].base_stat
@@ -28,14 +33,14 @@ export const PokemonCard = () => {
     setMoves(pokemonRandomMoves);
     setColorPalette(palette);
     setImage(img);
-    // setLoaded(true)
+    setLoading(false);
   };
 
   useEffect(() => {
     initialLoading();
   }, []);
 
-  if (loaded) return null;
+  if (loading) return null;
   return (
     <div
       style={{ backgroundColor: `${colorPalette.lightVibrant}66` }}
@@ -68,7 +73,10 @@ export const PokemonCard = () => {
 
       {/* Image */}
       <div
-        style={{ backgroundColor: `${colorPalette.vibrant}55` }}
+        style={{
+          backgroundColor: `${colorPalette.vibrant}55`,
+          minHeight: "10.663rem", // 170.6px
+        }}
         className="mx-4 border-4 rounded-lg border-yellow"
       >
         <img

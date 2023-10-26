@@ -45,13 +45,13 @@ export const Form = ({ placeholderPokemonName, onHideModal }: FormProps) => {
   };
 
   const generatePokemonHandler = async () => {
-    const pokemon = await toast.promise(fetchPokemon, {
+    const pokemon: any = await toast.promise(fetchPokemon, {
       pending: "Generating",
       success: "Success, redirecting...",
       error: "Pokemon Not Found!",
     });
 
-    setPokemon(pokemon || null);
+    setPokemon(pokemon);
     router.push(`/pokemon/${_.lowerCase(text)}`);
   };
 

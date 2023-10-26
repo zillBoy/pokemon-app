@@ -2,7 +2,7 @@ import { ReactNode, createContext, useContext, useState } from "react";
 
 type PokemonContextType = {
   pokemon: any;
-  setPokemon: React.Dispatch<any> | null;
+  setPokemon: React.Dispatch<any>;
 };
 
 // Create the pokemon context

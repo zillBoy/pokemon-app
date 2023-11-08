@@ -13,18 +13,22 @@ type PokemonCardType = {
   pokemon: any;
 };
 
+const RAW_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/";
+
 export const PokemonCard = ({ pokemon }: PokemonCardType) => {
   const [loading, setLoading] = useState(true);
   const [colorPalette, setColorPalette] = useState<PaletteColors>({});
   const [image, setImage] = useState<string>("");
   const [moves, setMoves] = useState<PokemonMoveType[]>([]);
 
+  const officialArtWork = pokemon.sprites.other[
+    "official-artwork"
+  ].front_default.replace(RAW_URL, "");
+
   const initialLoading = async () => {
     const pokemonType = checkAndGetPokemonType(pokemon.types[0].type.name);
     const img = `/images/pokemon-type/${pokemonType}.png`;
-    const palette = await getPalette(
-      pokemon.sprites.other["official-artwork"].front_default
-    );
+    const palette = await getPalette(officialArtWork);
     const pokemonRandomMoves = getTwoRandomPokemonMoves(
       pokemon.moves,
       pokemon.stats[0].base_stat
@@ -79,10 +83,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardType) => {
         }}
         className="mx-4 border-4 rounded-lg border-yellow"
       >
-        <img
-          className="w-8/12 mx-auto"
-          src={pokemon.sprites.other["official-artwork"].front_default}
-        />
+        <img className="w-8/12 mx-auto" src={officialArtWork} />
       </div>
 
       {/* Moves */}

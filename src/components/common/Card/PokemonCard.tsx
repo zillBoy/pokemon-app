@@ -21,9 +21,8 @@ export const PokemonCard = ({ pokemon }: PokemonCardType) => {
   const [image, setImage] = useState<string>("");
   const [moves, setMoves] = useState<PokemonMoveType[]>([]);
 
-  const officialArtWork = pokemon.sprites.other[
-    "official-artwork"
-  ].front_default.replace(RAW_URL, "");
+  const officialArtWork =
+    pokemon.sprites.other["official-artwork"].front_default; // .(RAW_URL, "");
 
   const initialLoading = async () => {
     const pokemonType = checkAndGetPokemonType(pokemon.types[0].type.name);
